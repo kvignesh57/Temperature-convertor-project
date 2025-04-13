@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Temperature Converter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .converter {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    input, select, button {
+      padding: 10px;
+      margin: 10px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="converter">
+    <h2>Temperature Converter</h2>
+    <input type="number" id="tempInput" placeholder="Enter temperature" />
+    <select id="fromUnit">
+      <option value="C">Celsius</option>
+      <option value="F">Fahrenheit</option>
+      <option value="K">Kelvin</option>
+    </select>
+    <span>to</span>
+    <select id="toUnit">
+      <option value="C">Celsius</option>
+      <option value="F">Fahrenheit</option>
+      <option value="K">Kelvin</option>
+    </select>
+    <br>
+    <button onclick="convertTemp()">Convert</button>
+    <h3 id="result"></h3>
+  </div>
+
+  <script>
+    function convertTemp() {
+      const temp = parseFloat(document.getElementById("tempInput").value);
+      const from = document.getElementById("fromUnit").value;
+      const to = document.getElementById("toUnit").value;
+      let result;
+
+      if (isNaN(temp)) {
+        result = "Please enter a valid number.";
+      } else {
+        if (from === to) {
+          result = ${temp} °${to};
+        } else {
+          // Convert from source to Celsius
+          let celsius;
+          switch (from) {
+            case "C": celsius = temp; break;
+            case "F": celsius = (temp - 32) * 5 / 9; break;
+            case "K": celsius = temp - 273.15; break;
+          }
+
+          // Convert from Celsius to target
+          switch (to) {
+            case "C": result = ${celsius.toFixed(2)} °C; break;
+            case "F": result = ${(celsius * 9 / 5 + 32).toFixed(2)} °F; break;
+            case "K": result = ${(celsius + 273.15).toFixed(2)} K; break;
+          }
+        }
+      }
+
+      document.getElementById("result").textContent = result;
+    }
+  </script>
+
+</body>
+</html>
