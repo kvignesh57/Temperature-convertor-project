@@ -58,21 +58,33 @@
         result = "Please enter a valid number.";
       } else {
         if (from === to) {
-          result = ${temp} °${to};
+          result = `${temp} °${to}`; // Corrected this line
         } else {
           // Convert from source to Celsius
           let celsius;
           switch (from) {
-            case "C": celsius = temp; break;
-            case "F": celsius = (temp - 32) * 5 / 9; break;
-            case "K": celsius = temp - 273.15; break;
+            case "C": 
+              celsius = temp; 
+              break;
+            case "F": 
+              celsius = (temp - 32) * 5 / 9; 
+              break;
+            case "K": 
+              celsius = temp - 273.15; 
+              break;
           }
 
           // Convert from Celsius to target
           switch (to) {
-            case "C": result = ${celsius.toFixed(2)} °C; break;
-            case "F": result = ${(celsius * 9 / 5 + 32).toFixed(2)} °F; break;
-            case "K": result = ${(celsius + 273.15).toFixed(2)} K; break;
+            case "C": 
+              result = `${celsius.toFixed(2)} °C`; 
+              break; // Corrected this line
+            case "F": 
+              result = `${(celsius * 9 / 5 + 32).toFixed(2)} °F`; 
+              break; // Corrected this line
+            case "K": 
+              result = `${(celsius + 273.15).toFixed(2)} K`; 
+              break; // Corrected this line
           }
         }
       }
